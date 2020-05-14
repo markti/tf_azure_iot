@@ -8,6 +8,11 @@ resource "azurerm_iothub" "iot_hub" {
     name     = var.sku
     capacity = var.capacity
   }
+   
+  tags = {
+    app = var.app_name
+    env = var.env_name
+  }
 
 }
 
@@ -25,7 +30,12 @@ resource "azurerm_iothub_dps" "iot_hub_prov" {
       connection_string     = "HostName=${azurerm_iothub.iot_hub.hostname};SharedAccessKeyName=${azurerm_iothub.iot_hub.shared_access_policy[0].key_name};SharedAccessKey=${azurerm_iothub.iot_hub.shared_access_policy[0].primary_key}"
       location              = var.location
   }
-
+ 
+  tags = {
+    app = var.app_name
+    env = var.env_name
+  }
+  
 }
 
 /* read only set */
