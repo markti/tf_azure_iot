@@ -5,8 +5,8 @@ resource "azurerm_iothub" "iot_hub" {
   location            = var.location
 
   sku {
-    name     = "S1"
-    capacity = "1"
+    name     = var.sku
+    capacity = var.capacity
   }
 
 }
